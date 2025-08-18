@@ -1,4 +1,3 @@
-
 namespace Musixd.API
 {
     public class Program

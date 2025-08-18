@@ -17,7 +17,7 @@
         public ICollection<AlbumStudio> AlbumStudios { get; set; }
         public ICollection<CreatedBy> CreatedBys { get; set; }
         public ICollection<Review> Reviews { get; set; }
-        public ICollection<FavouriteAlbum> FavouriteAlbums { get; set; }
+        public ICollection<FavouriteAlbumList> FavouriteAlbums { get; set; }
         public ICollection<List> Lists { get; set; }
     }
 }
