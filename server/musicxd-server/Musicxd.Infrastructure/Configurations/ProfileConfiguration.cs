@@ -73,7 +73,7 @@ namespace Musicxd.Infrastructure.Configurations
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Table Name
-            builder.ToTable("profiles");
+            builder.ToTable("profile");
         }
     }
 }

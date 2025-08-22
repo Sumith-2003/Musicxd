@@ -4,7 +4,6 @@
     {
         public int StudioId { get; set; }
         public string StudioName { get; set; }
-
-        public ICollection<AlbumStudio> AlbumStudios { get; set; }
+        public ICollection<Album> Albums { get; set; }
     }
 }

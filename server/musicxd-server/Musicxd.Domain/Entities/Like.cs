@@ -2,7 +2,7 @@
 {
     public class Like
     {
-        public int LikesId { get; set; }
+        public int LikeId { get; set; }
         public int ReviewId { get; set; }
         public int ProfileId { get; set; }
 

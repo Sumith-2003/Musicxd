@@ -5,8 +5,7 @@
         public int ArtistId { get; set; }
         public string Name { get; set; }
         public string Bio { get; set; }
-
-        public ICollection<CreatedBy> CreatedBys { get; set; }
+        public ICollection<Album> Albums { get; set; }
     }
 
 }
