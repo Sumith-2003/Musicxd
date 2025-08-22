@@ -16,21 +16,17 @@ namespace Musicxd.Infrastructure.Configurations
             builder.HasKey(g=>g.GenreId);
 
             builder.Property(g => g.GenreId)
+                .HasColumnType("integer")
                 .ValueGeneratedOnAdd()
                 .HasColumnName("genre_id");
 
             builder.Property(g => g.GenreName)
-                .IsRequired()
-                .HasMaxLength(100)
                 .HasColumnName("genre_name");
 
-            builder.HasMany(a => a.Albums)
-                .WithMany(g => g.Genres);
-               
-            builder.HasIndex(g => g.GenreName)
-              .IsUnique()
-              .HasDatabaseName("IX_Genre_GenreName");
+            builder.HasMany(g=>g.Albums)
+                .WithMany(a=>a.Genres);
 
+            builder.ToTable("genre");
         }
     }
 }

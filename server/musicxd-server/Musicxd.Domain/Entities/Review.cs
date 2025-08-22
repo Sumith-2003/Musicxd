@@ -1,11 +1,15 @@
-﻿namespace Musicxd.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Musicxd.Domain.Entities
 {
     public class Review
     {
         public int ReviewId { get; set; }
         public int ProfileId { get; set; }
         public int AlbumId { get; set; }
+        [ForeignKey(nameof(CreatedDate))]
         public int CreatedDateId { get; set; }
+        [ForeignKey(nameof(UpdatedDate))]
         public int? UpdatedDateId { get; set; }
         public int Rating { get; set; } // 1-5
         public string ReviewDescription { get; set; }

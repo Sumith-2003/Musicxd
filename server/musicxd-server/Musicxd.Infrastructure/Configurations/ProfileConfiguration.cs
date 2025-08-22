@@ -16,9 +16,6 @@ namespace Musicxd.Infrastructure.Configurations
                 .HasColumnName("profile_id")
                 .ValueGeneratedOnAdd();
 
-            builder.HasIndex(p => p.Username)
-                .IsUnique();
-
             builder.Property(p => p.Username)
                 .HasColumnName("username")
                 .IsRequired()
@@ -36,6 +33,20 @@ namespace Musicxd.Infrastructure.Configurations
                 .HasColumnName("bio")
                 .HasMaxLength(500);
 
+            builder.Property(p=>p.UserId)
+                .HasColumnName("user_id")
+                .IsRequired()
+                .HasColumnType("int");
+
+            builder.Property(p => p.DateJoinedId)
+                .HasColumnName("date_joined_id")
+                .IsRequired()
+                .HasColumnType("int");
+
+            builder.HasIndex(p => p.Username)
+               .IsUnique();
+
+
             // Relationships
             builder.HasOne(p => p.User)
                 .WithOne(u => u.Profile)
@@ -43,9 +54,9 @@ namespace Musicxd.Infrastructure.Configurations
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(p => p.DateJoined)
-                .WithMany()
+                .WithMany(d => d.ProfilesJoined)
                 .HasForeignKey(p => p.DateJoinedId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(p => p.FavouriteAlbumList)
                 .WithOne(f => f.Profile)

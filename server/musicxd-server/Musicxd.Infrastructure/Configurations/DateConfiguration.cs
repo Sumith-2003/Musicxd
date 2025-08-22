@@ -41,6 +41,40 @@ namespace Musicxd.Infrastructure.Configurations
                 .HasColumnName("day")
                 .HasColumnType("integer");
 
+            //Relationships
+
+            builder.HasMany(d=>d.Albums)
+                .WithOne(a => a.ReleaseDate)
+                .HasForeignKey(a => a.ReleaseDateId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasMany(d => d.ProfilesJoined)
+                .WithOne(p => p.DateJoined)
+                .HasForeignKey(p => p.DateJoinedId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasMany(d => d.ReviewsCreated)
+                .WithOne(r => r.CreatedDate)
+                .HasForeignKey(r => r.CreatedDateId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasMany(d => d.Comments)
+                .WithOne(c => c.CreatedDate)
+                .HasForeignKey(c => c.CreatedDateId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasMany(d=>d.ListsCreated)
+                .WithOne(l => l.CreatedDate)
+                .HasForeignKey(l => l.CreatedDateId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasMany(d => d.ListsUpdated)
+                .WithOne(l => l.UpdatedDate)
+                .HasForeignKey(l => l.UpdatedDateId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.ToTable("date");
+
         }
     }
 }

@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Musicxd.Infrastructure.Data;
+
 namespace Musixd.API
 {
     public class Program
@@ -5,6 +8,9 @@ namespace Musixd.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<DataContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+                b => b.MigrationsAssembly("Musicxd.Infrastructure")));
 
             // Add services to the container.
 

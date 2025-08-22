@@ -46,7 +46,7 @@ namespace Musicxd.Infrastructure.Configurations
             // Relationships
             builder.HasOne(al => al.Studio)
                 .WithMany(c => c.Albums)
-                .HasForeignKey(a => a.StudioId)
+                .HasForeignKey(al => al.StudioId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(al => al.Genres)
@@ -55,6 +55,22 @@ namespace Musicxd.Infrastructure.Configurations
             builder.HasMany(al => al.Artists)
                 .WithMany(ar => ar.Albums);
 
+            builder.HasMany(al => al.Reviews)
+                .WithOne(r => r.Album)
+                .HasForeignKey(r => r.AlbumId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(al => al.Lists)
+                .WithMany(l => l.Albums);
+
+            builder.HasOne(al => al.ReleaseDate)
+                .WithMany(d => d.Albums)
+                .HasForeignKey(a => a.ReleaseDateId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasMany(al => al.FavouriteAlbumLists)
+                .WithMany(c => c.Albums);
+            
             //Table Name
             builder.ToTable("album");
         }

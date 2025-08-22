@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.36105.23 d17.13
+VisualStudioVersion = 17.13.36105.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Musixd.API", "Musixd.API\Musixd.API.csproj", "{81D9CB7F-B6E4-4B7A-8AD2-DA1CC4DDE2E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Musicxd.API", "Musixd.API\Musicxd.API.csproj", "{81D9CB7F-B6E4-4B7A-8AD2-DA1CC4DDE2E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Musicxd.Domain", "Musicxd.Domain\Musicxd.Domain.csproj", "{F61CDEA7-90BF-414E-B313-47946A34D165}"
 EndProject

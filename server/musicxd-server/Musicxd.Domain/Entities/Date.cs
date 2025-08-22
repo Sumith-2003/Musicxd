@@ -15,5 +15,6 @@
         public ICollection<List> ListsCreated { get; set; }
         public ICollection<List> ListsUpdated { get; set; }
         public ICollection<Profile> ProfilesJoined { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }
