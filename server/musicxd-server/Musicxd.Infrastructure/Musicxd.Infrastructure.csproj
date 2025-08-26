@@ -24,4 +24,9 @@
     <ProjectReference Include="..\Musicxd.Domain\Musicxd.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\Implementations\" />
+    <Folder Include="Repositories\Interfaces\" />
+  </ItemGroup>
+
 </Project>

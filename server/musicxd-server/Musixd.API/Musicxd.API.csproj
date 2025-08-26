@@ -23,6 +23,9 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="DTO\" />
+    <Folder Include="Services\Implementations\" />
+    <Folder Include="Services\Interfaces\" />
   </ItemGroup>
 
 </Project>
