@@ -13,14 +13,16 @@ namespace Musicxd.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Comment> builder)
         {
+            // Primary Key
             builder.HasKey(c => c.CommentId);
 
-            builder.Property(c=>c.CommentId)
+            // Properties
+            builder.Property(c => c.CommentId)
                 .HasColumnType("integer")
                 .ValueGeneratedOnAdd()
                 .HasColumnName("comment_id");
 
-            builder.Property(c=>c.CreatedDateId)
+            builder.Property(c => c.CreatedDateId)
                 .HasColumnType("integer")
                 .HasColumnName("created_date_id");
 
@@ -35,24 +37,24 @@ namespace Musicxd.Infrastructure.Configurations
             builder.Property(c => c.CommentContent)
                 .HasColumnName("comment_content");
 
-            builder.HasOne(c=>c.Profile)
-                .WithMany(p=>p.Comments)
-                .HasForeignKey(p=>p.ProfileId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasOne(c=>c.CreatedDate)
-                .WithMany(d=>d.Comments)
-                .HasForeignKey(d=>d.CreatedDateId)
+            // Relationships
+            builder.HasOne(c => c.Profile)
+                .WithMany(p => p.Comments)
+                .HasForeignKey(p => p.ProfileId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(c=>c.Review)
-                .WithMany(r=>r.Comments)
-                .HasForeignKey(c=>c.ReviewId)
-                .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(c => c.CreatedDate)
+                .WithMany(d => d.Comments)
+                .HasForeignKey(d => d.CreatedDateId)
+                .OnDelete(DeleteBehavior.NoAction);
 
+            builder.HasOne(c => c.Review)
+                .WithMany(r => r.Comments)
+                .HasForeignKey(c => c.ReviewId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // Table name
             builder.ToTable("comment");
-
-    }
-   
+        }
     }
 }

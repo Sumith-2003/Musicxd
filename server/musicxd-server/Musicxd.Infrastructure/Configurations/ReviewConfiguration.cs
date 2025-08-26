@@ -49,12 +49,12 @@ namespace Musicxd.Infrastructure.Configurations
             builder.HasOne(r=>r.Profile)
                 .WithMany(p => p.Reviews)
                 .HasForeignKey(r => r.ProfileId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(r => r.Album)
                 .WithMany(a => a.Reviews)
                 .HasForeignKey(r => r.AlbumId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(r => r.CreatedDate)  
                 .WithMany(d => d.ReviewsCreated)
@@ -69,13 +69,14 @@ namespace Musicxd.Infrastructure.Configurations
             builder.HasMany(r => r.Comments)
                 .WithOne(c => c.Review)
                 .HasForeignKey(c => c.ReviewId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasMany(r => r.Likes)
                 .WithOne(l => l.Review)
                 .HasForeignKey(l => l.ReviewId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
+            // Table name
             builder.ToTable("review");
         }
     }

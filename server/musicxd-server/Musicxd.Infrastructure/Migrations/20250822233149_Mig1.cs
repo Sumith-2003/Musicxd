@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Musicxd.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Mig1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -107,8 +107,7 @@ namespace Musicxd.Infrastructure.Migrations
                         name: "FK_album_studio_studio_id",
                         column: x => x.studio_id,
                         principalTable: "studio",
-                        principalColumn: "studio_id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "studio_id");
                 });
 
             migrationBuilder.CreateTable(
@@ -136,8 +135,7 @@ namespace Musicxd.Infrastructure.Migrations
                         name: "FK_profile_user_user_id",
                         column: x => x.user_id,
                         principalTable: "user",
-                        principalColumn: "user_id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "user_id");
                 });
 
             migrationBuilder.CreateTable(
@@ -203,8 +201,7 @@ namespace Musicxd.Infrastructure.Migrations
                         name: "FK_favourite_album_list_profile_profile_id",
                         column: x => x.profile_id,
                         principalTable: "profile",
-                        principalColumn: "profile_id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "profile_id");
                 });
 
             migrationBuilder.CreateTable(
@@ -217,23 +214,11 @@ namespace Musicxd.Infrastructure.Migrations
                     created_date_id = table.Column<int>(type: "integer", nullable: false),
                     updated_date_id = table.Column<int>(type: "integer", nullable: true),
                     list_description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    list_name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    DateId = table.Column<int>(type: "integer", nullable: true),
-                    DateId1 = table.Column<int>(type: "integer", nullable: true)
+                    list_name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_list", x => x.list_id);
-                    table.ForeignKey(
-                        name: "FK_list_date_DateId",
-                        column: x => x.DateId,
-                        principalTable: "date",
-                        principalColumn: "date_id");
-                    table.ForeignKey(
-                        name: "FK_list_date_DateId1",
-                        column: x => x.DateId1,
-                        principalTable: "date",
-                        principalColumn: "date_id");
                     table.ForeignKey(
                         name: "FK_list_date_created_date_id",
                         column: x => x.created_date_id,
@@ -248,8 +233,7 @@ namespace Musicxd.Infrastructure.Migrations
                         name: "FK_list_profile_profile_id",
                         column: x => x.profile_id,
                         principalTable: "profile",
-                        principalColumn: "profile_id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "profile_id");
                 });
 
             migrationBuilder.CreateTable(
@@ -261,10 +245,9 @@ namespace Musicxd.Infrastructure.Migrations
                     profile_id = table.Column<int>(type: "integer", nullable: false),
                     album_id = table.Column<int>(type: "integer", nullable: false),
                     created_date_id = table.Column<int>(type: "integer", nullable: false),
-                    UpdatedDateId = table.Column<int>(type: "integer", nullable: true),
+                    updated_date_id = table.Column<int>(type: "integer", nullable: true),
                     rating = table.Column<int>(type: "int", nullable: false),
-                    review_description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    ProfileId1 = table.Column<int>(type: "int", nullable: true)
+                    review_description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -273,29 +256,22 @@ namespace Musicxd.Infrastructure.Migrations
                         name: "FK_review_album_album_id",
                         column: x => x.album_id,
                         principalTable: "album",
-                        principalColumn: "album_id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_review_date_UpdatedDateId",
-                        column: x => x.UpdatedDateId,
-                        principalTable: "date",
-                        principalColumn: "date_id");
+                        principalColumn: "album_id");
                     table.ForeignKey(
                         name: "FK_review_date_created_date_id",
                         column: x => x.created_date_id,
                         principalTable: "date",
                         principalColumn: "date_id");
                     table.ForeignKey(
-                        name: "FK_review_profile_ProfileId1",
-                        column: x => x.ProfileId1,
-                        principalTable: "profile",
-                        principalColumn: "profile_id");
+                        name: "FK_review_date_updated_date_id",
+                        column: x => x.updated_date_id,
+                        principalTable: "date",
+                        principalColumn: "date_id");
                     table.ForeignKey(
                         name: "FK_review_profile_profile_id",
                         column: x => x.profile_id,
                         principalTable: "profile",
-                        principalColumn: "profile_id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "profile_id");
                 });
 
             migrationBuilder.CreateTable(
@@ -369,14 +345,12 @@ namespace Musicxd.Infrastructure.Migrations
                         name: "FK_comment_profile_profile_id",
                         column: x => x.profile_id,
                         principalTable: "profile",
-                        principalColumn: "profile_id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "profile_id");
                     table.ForeignKey(
                         name: "FK_comment_review_review_id",
                         column: x => x.review_id,
                         principalTable: "review",
-                        principalColumn: "review_id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "review_id");
                 });
 
             migrationBuilder.CreateTable(
@@ -397,14 +371,12 @@ namespace Musicxd.Infrastructure.Migrations
                         name: "FK_like_profile_profile_id1",
                         column: x => x.profile_id1,
                         principalTable: "profile",
-                        principalColumn: "profile_id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "profile_id");
                     table.ForeignKey(
                         name: "FK_like_review_review_id",
                         column: x => x.review_id,
                         principalTable: "review",
-                        principalColumn: "review_id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "review_id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -474,16 +446,6 @@ namespace Musicxd.Infrastructure.Migrations
                 column: "created_date_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_list_DateId",
-                table: "list",
-                column: "DateId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_list_DateId1",
-                table: "list",
-                column: "DateId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_list_profile_id",
                 table: "list",
                 column: "profile_id");
@@ -526,14 +488,9 @@ namespace Musicxd.Infrastructure.Migrations
                 column: "profile_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_review_ProfileId1",
+                name: "IX_review_updated_date_id",
                 table: "review",
-                column: "ProfileId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_review_UpdatedDateId",
-                table: "review",
-                column: "UpdatedDateId");
+                column: "updated_date_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",

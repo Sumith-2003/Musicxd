@@ -5,7 +5,7 @@
 namespace Musicxd.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Modification1 : Migration
+    public partial class Mig3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

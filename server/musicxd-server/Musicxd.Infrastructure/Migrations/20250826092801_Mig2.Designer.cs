@@ -12,8 +12,8 @@ using Musicxd.Infrastructure.Data;
 namespace Musicxd.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250822120213_Modification4")]
-    partial class Modification4
+    [Migration("20250826092801_Mig2")]
+    partial class Mig2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -562,7 +562,7 @@ namespace Musicxd.Infrastructure.Migrations
                     b.HasOne("Musicxd.Domain.Entities.Date", "ReleaseDate")
                         .WithMany("Albums")
                         .HasForeignKey("ReleaseDateId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Musicxd.Domain.Entities.Studio", "Studio")
                         .WithMany("Albums")
@@ -580,19 +580,19 @@ namespace Musicxd.Infrastructure.Migrations
                     b.HasOne("Musicxd.Domain.Entities.Date", "CreatedDate")
                         .WithMany("Comments")
                         .HasForeignKey("CreatedDateId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Musicxd.Domain.Entities.Profile", "Profile")
                         .WithMany("Comments")
                         .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Musicxd.Domain.Entities.Review", "Review")
                         .WithMany("Comments")
                         .HasForeignKey("ReviewId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("CreatedDate");
@@ -607,7 +607,7 @@ namespace Musicxd.Infrastructure.Migrations
                     b.HasOne("Musicxd.Domain.Entities.Profile", "Profile")
                         .WithOne("FavouriteAlbumList")
                         .HasForeignKey("Musicxd.Domain.Entities.FavouriteAlbumList", "ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Profile");
@@ -618,13 +618,13 @@ namespace Musicxd.Infrastructure.Migrations
                     b.HasOne("Musicxd.Domain.Entities.Review", "Review")
                         .WithMany("Likes")
                         .HasForeignKey("ReviewId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Musicxd.Domain.Entities.Profile", "Profile")
                         .WithMany("Likes")
                         .HasForeignKey("profile_id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Profile");
@@ -643,7 +643,7 @@ namespace Musicxd.Infrastructure.Migrations
                     b.HasOne("Musicxd.Domain.Entities.Profile", "Profile")
                         .WithMany("Lists")
                         .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Musicxd.Domain.Entities.Date", "UpdatedDate")
@@ -663,7 +663,7 @@ namespace Musicxd.Infrastructure.Migrations
                     b.HasOne("Musicxd.Domain.Entities.Date", "DateJoined")
                         .WithMany("ProfilesJoined")
                         .HasForeignKey("DateJoinedId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Musicxd.Domain.Entities.User", "User")
@@ -682,7 +682,7 @@ namespace Musicxd.Infrastructure.Migrations
                     b.HasOne("Musicxd.Domain.Entities.Album", "Album")
                         .WithMany("Reviews")
                         .HasForeignKey("AlbumId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Musicxd.Domain.Entities.Date", "CreatedDate")
@@ -694,7 +694,7 @@ namespace Musicxd.Infrastructure.Migrations
                     b.HasOne("Musicxd.Domain.Entities.Profile", "Profile")
                         .WithMany("Reviews")
                         .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Musicxd.Domain.Entities.Date", "UpdatedDate")

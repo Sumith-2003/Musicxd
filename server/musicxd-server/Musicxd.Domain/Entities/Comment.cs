@@ -1,4 +1,6 @@
-﻿namespace Musicxd.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Musicxd.Domain.Entities
 {
     public class Comment
     {
@@ -9,6 +11,7 @@
         public int CreatedDateId { get; set; }
 
         public Date CreatedDate { get; set; }
+        [ForeignKey(nameof(ReviewId))]
         public Review Review { get; set; }
         public Profile Profile { get; set; }
     }

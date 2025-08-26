@@ -12,7 +12,6 @@ namespace Musicxd.Domain.Entities
         public int? UpdatedDateId { get; set; }
         public string ListDescription { get; set; }
         public string ListName { get; set; }
-
         public Profile Profile { get; set; }
         public ICollection<Album> Albums { get; set; }
         public Date CreatedDate { get; set; }

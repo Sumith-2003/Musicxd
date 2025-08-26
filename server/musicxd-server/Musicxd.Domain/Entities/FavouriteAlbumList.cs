@@ -5,6 +5,6 @@
         public int FavouriteAlbumListId { get; set; }
         public int ProfileId { get; set; }
         public Profile Profile { get; set; }
-        public ICollection<Album> Albums { get; set; } = new List<Album>();
+        public ICollection<Album> Albums { get; set; }
     }
 }

@@ -13,8 +13,10 @@ namespace Musicxd.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Genre> builder)
         {
+            // Primary Key
             builder.HasKey(g=>g.GenreId);
 
+            // Properties
             builder.Property(g => g.GenreId)
                 .HasColumnType("integer")
                 .ValueGeneratedOnAdd()
@@ -23,9 +25,11 @@ namespace Musicxd.Infrastructure.Configurations
             builder.Property(g => g.GenreName)
                 .HasColumnName("genre_name");
 
+            //Relationships
             builder.HasMany(g=>g.Albums)
                 .WithMany(a=>a.Genres);
 
+            // Table Name
             builder.ToTable("genre");
         }
     }

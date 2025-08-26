@@ -24,7 +24,7 @@ namespace Musicxd.Infrastructure.Configurations
             builder.Property(u => u.Password)
                 .HasColumnName("password")
                 .IsRequired()
-                .HasMaxLength(256); // Adjust based on your hashing algorithm
+                .HasMaxLength(256); 
 
             //Indexes
             builder.HasIndex(u => u.Email)
@@ -35,7 +35,7 @@ namespace Musicxd.Infrastructure.Configurations
             builder.HasOne(u => u.Profile)
                 .WithOne(p => p.User)
                 .HasForeignKey<Profile>(p => p.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             //Table Name
             builder.ToTable("user");

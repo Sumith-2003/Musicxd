@@ -13,8 +13,10 @@ namespace Musicxd.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Studio> builder)
         {
+            // Primary Key
             builder.HasKey(s=>s.StudioId);
 
+            // Properties
             builder.Property(s => s.StudioId)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("studio_id");
@@ -24,10 +26,13 @@ namespace Musicxd.Infrastructure.Configurations
                 .HasMaxLength(200)
                 .HasColumnName("studio_name");
 
+            // Relationships
             builder.HasMany(s => s.Albums)
                 .WithOne(a => a.Studio)
-                .HasForeignKey(a => a.StudioId); // one has many and that many has foreign key
+                .HasForeignKey(a => a.StudioId)
+                .OnDelete(DeleteBehavior.Cascade); // one has many and that many has foreign key
                 
+            // Table name
             builder.ToTable("studio");
         }
     }

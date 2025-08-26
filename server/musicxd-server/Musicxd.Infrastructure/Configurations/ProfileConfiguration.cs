@@ -46,7 +46,6 @@ namespace Musicxd.Infrastructure.Configurations
             builder.HasIndex(p => p.Username)
                .IsUnique();
 
-
             // Relationships
             builder.HasOne(p => p.User)
                 .WithOne(u => u.Profile)

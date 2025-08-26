@@ -8,8 +8,10 @@ namespace Musicxd.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<List> builder)
         {
+            // Primary Key
             builder.HasKey(l => l.ListId);
 
+            // Properties
             builder.Property(l => l.ListId)
                 .HasColumnName("list_id")
                 .ValueGeneratedOnAdd();
@@ -35,10 +37,11 @@ namespace Musicxd.Infrastructure.Configurations
                 .HasColumnType("integer")
                 .HasColumnName("updated_date_id");
 
+            // Relationships
             builder.HasOne(l => l.Profile)
                 .WithMany(p => p.Lists)
                 .HasForeignKey(l => l.ProfileId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(l => l.CreatedDate)
                 .WithMany(d => d.ListsCreated)
@@ -53,8 +56,8 @@ namespace Musicxd.Infrastructure.Configurations
             builder.HasMany(l => l.Albums)
                 .WithMany(a => a.Lists);
 
+            // Table name
             builder.ToTable("list");
-
         }
     }
 }

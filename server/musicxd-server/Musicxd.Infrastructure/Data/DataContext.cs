@@ -1,4 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Musicxd.Domain.Entities;
 using Musicxd.Infrastructure.Configurations;
 
@@ -9,6 +12,18 @@ namespace Musicxd.Infrastructure.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
+        //    optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Echoes;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        //    //var configBuilder = new ConfigurationBuilder().Build();
+        //    //configBuilder
+        //    //    .AddJsonFile("appsetting.json")
+        //    //    .Build();
+        //    //var configSection = configBuilder.GetSection("ConnectionStrings");
+        //    //var connectionString = configSection["DefaultConnection"] ?? null;
+        //    //optionsBuilder.UseSqlServer(connectionString);
+        //}
 
         public DbSet<Album> Albums { get; set; }
         public DbSet<Artist> Artists { get; set; }
@@ -37,7 +52,6 @@ namespace Musicxd.Infrastructure.Data
             modelBuilder.ApplyConfiguration<List>(new ListConfiguration());
             modelBuilder.ApplyConfiguration<Review>(new ReviewConfiguration());
             modelBuilder.ApplyConfiguration<Studio>(new StudioConfiguration());
-            
         }
     }
 }

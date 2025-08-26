@@ -35,12 +35,12 @@ namespace Musicxd.Infrastructure.Configurations
             builder.HasOne(l => l.Profile)
                 .WithMany(p => p.Likes)
                 .HasForeignKey("profile_id")
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(l => l.Review)
                 .WithMany(r => r.Likes)
                 .HasForeignKey("review_id")
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             // Table Name
             builder.ToTable("like");

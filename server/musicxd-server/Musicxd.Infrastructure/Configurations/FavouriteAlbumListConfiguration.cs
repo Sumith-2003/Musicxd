@@ -13,8 +13,10 @@ namespace Musicxd.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<FavouriteAlbumList> builder)
         {
+            // Primary Key
             builder.HasKey(f => f.FavouriteAlbumListId);
 
+            // Properties
             builder.Property(f => f.FavouriteAlbumListId)
                 .HasColumnType("integer")
                 .HasColumnName("favourite_album_list_id")
@@ -24,14 +26,16 @@ namespace Musicxd.Infrastructure.Configurations
                 .HasColumnType("integer")
                 .HasColumnName("profile_id");
 
+            // Relationships
             builder.HasOne(f => f.Profile)
                 .WithOne(p => p.FavouriteAlbumList)
                 .HasForeignKey<FavouriteAlbumList>(f => f.ProfileId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasMany(f => f.Albums)
                 .WithMany(a => a.FavouriteAlbumLists);
 
+            // Table name
             builder.ToTable("favourite_album_list");
         }
     }
