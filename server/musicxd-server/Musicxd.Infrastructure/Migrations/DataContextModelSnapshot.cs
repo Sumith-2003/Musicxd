@@ -220,6 +220,26 @@ namespace Musicxd.Infrastructure.Migrations
                     b.HasKey("DateId");
 
                     b.ToTable("date", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            DateId = 1,
+                            DateValue = new DateTime(2023, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Day = 15,
+                            Decade = 2020,
+                            Month = 1,
+                            Year = 2023
+                        },
+                        new
+                        {
+                            DateId = 2,
+                            DateValue = new DateTime(2023, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Day = 22,
+                            Decade = 2020,
+                            Month = 3,
+                            Year = 2023
+                        });
                 });
 
             modelBuilder.Entity("Musicxd.Domain.Entities.FavouriteAlbumList", b =>
@@ -394,6 +414,27 @@ namespace Musicxd.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("profile", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ProfileId = 1,
+                            Bio = "Music enthusiast and vinyl collector",
+                            DateJoinedId = 1,
+                            Location = "New York, NY",
+                            UserId = 1,
+                            Username = "JohnDoe",
+                            Website = "https://johndoe.com"
+                        },
+                        new
+                        {
+                            ProfileId = 2,
+                            Bio = "Passionate about discovering new artists and genres",
+                            DateJoinedId = 2,
+                            Location = "Los Angeles, CA",
+                            UserId = 2,
+                            Username = "JaneSmith"
+                        });
                 });
 
             modelBuilder.Entity("Musicxd.Domain.Entities.Review", b =>
@@ -492,6 +533,20 @@ namespace Musicxd.Infrastructure.Migrations
                         .HasDatabaseName("IX_Users_Email");
 
                     b.ToTable("user", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            Email = "john.doe@example.com",
+                            Password = "Password123!"
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            Email = "jane.smith@example.com",
+                            Password = "SecurePass456!"
+                        });
                 });
 
             modelBuilder.Entity("AlbumArtist", b =>

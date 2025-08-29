@@ -12,18 +12,7 @@ namespace Musicxd.Infrastructure.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
-        //    optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Echoes;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
-        //    //var configBuilder = new ConfigurationBuilder().Build();
-        //    //configBuilder
-        //    //    .AddJsonFile("appsetting.json")
-        //    //    .Build();
-        //    //var configSection = configBuilder.GetSection("ConnectionStrings");
-        //    //var connectionString = configSection["DefaultConnection"] ?? null;
-        //    //optionsBuilder.UseSqlServer(connectionString);
-        //}
+        
 
         public DbSet<Album> Albums { get; set; }
         public DbSet<Artist> Artists { get; set; }
@@ -52,6 +41,41 @@ namespace Musicxd.Infrastructure.Data
             modelBuilder.ApplyConfiguration<List>(new ListConfiguration());
             modelBuilder.ApplyConfiguration<Review>(new ReviewConfiguration());
             modelBuilder.ApplyConfiguration<Studio>(new StudioConfiguration());
+            
+            // Seed dates for join dates
+            modelBuilder.Entity<Date>().HasData(
+                new Date { DateId = 1, DateValue = new DateTime(2023, 1, 15), Decade = 2020, Year = 2023, Month = 1, Day = 15 },
+                new Date { DateId = 2, DateValue = new DateTime(2023, 3, 22), Decade = 2020, Year = 2023, Month = 3, Day = 22 }
+            );
+            
+            // Seed users
+            modelBuilder.Entity<User>().HasData(
+                new User { UserId = 1, Email = "john.doe@example.com", Password = "Password123!" },
+                new User { UserId = 2, Email = "jane.smith@example.com", Password = "SecurePass456!" }
+            );
+
+            // Seed profiles
+            modelBuilder.Entity<Profile>().HasData(
+                new Profile 
+                { 
+                    ProfileId = 1, 
+                    UserId = 1, 
+                    Username = "JohnDoe", 
+                    DateJoinedId = 1,
+                    Location = "New York, NY",
+                    Website = "https://johndoe.com",
+                    Bio = "Music enthusiast and vinyl collector"
+                },
+                new Profile 
+                { 
+                    ProfileId = 2, 
+                    UserId = 2, 
+                    Username = "JaneSmith", 
+                    DateJoinedId = 2,
+                    Location = "Los Angeles, CA",
+                    Bio = "Passionate about discovering new artists and genres"
+                }
+            );
         }
     }
 }
