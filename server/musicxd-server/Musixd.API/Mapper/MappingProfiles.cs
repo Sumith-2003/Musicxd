@@ -18,6 +18,17 @@ namespace Musicxd.API.Mapper
             return profile;
         }
 
-        //public 
+        public Profile ToEntity(UpdateProfileRequestDto dto)
+        {
+            var profile = new Profile
+            {
+                Username = dto.UserName,
+                Location = dto.Location,
+                Website = dto.Website,
+                Bio = dto.Bio
+            };
+
+            return profile;
+        }
     }
 }

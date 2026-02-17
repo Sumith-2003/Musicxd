@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Musicxd.API.Services.Implementations;
+using Musicxd.API.Services.Interfaces;
 using Musicxd.Infrastructure.Data;
 using Musicxd.Infrastructure.Repositories.Implementations;
 using System;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Musicxd.API
 {
@@ -12,12 +14,17 @@ namespace Musicxd.API
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            {
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("DefaultConnection"),
+                    sqlOptions => sqlOptions.MigrationsAssembly("Musicxd.API")
+                );
+            });
 
             // Add services to the container.
             builder.Services.AddScoped<ProfileService, ProfileService>();
             builder.Services.AddScoped<ProfileRepository, ProfileRepository>();
-            //builder.Services.AddScoped<IAlbumImportService, AlbumImportService>();
+            builder.Services.AddScoped<IDataImportService, DataImportService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
